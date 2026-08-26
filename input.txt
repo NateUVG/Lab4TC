@@ -1,0 +1,24 @@
+# Expresiones regulares 
+# Formato: REGEX: <expresion>  seguido de una o mas lineas CADENA: <cadena>
+# Una CADENA: vacia, "eps" o "ε" representa la cadena vacia.
+# "eps" dentro de la expresion regular tambien se interpreta como epsilon.
+
+REGEX: (a*|b*)+
+CADENA: abab
+CADENA: aaabbb
+CADENA: abc
+
+REGEX: ((eps|a)|b*)*
+CADENA: aabb
+CADENA:
+CADENA: abc
+
+REGEX: (a|b)*abb(a|b)*
+CADENA: aabb
+CADENA: aaab
+CADENA: bbb
+
+REGEX: 0?(1?)?0*
+CADENA: 0100
+CADENA: 1
+CADENA: 00100

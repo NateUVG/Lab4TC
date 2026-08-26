@@ -1,0 +1,268 @@
+======================================================================
+a) Expresion regular: (a*|b*)+
+======================================================================
+Infix con concatenacion explicita: (a*|b*)+
+Postfix (Shunting Yard, Lab 2):     a*b*|+
+
+AFN (Thompson) -- 22 estados:
+  Estados: 22  (q0..q21)
+  Estado inicial:    q8
+  Estado aceptacion: q21
+  Transiciones:
+    q0 --a--> q1
+    q1 --ε--> q0
+    q1 --ε--> q3
+    q2 --ε--> q0
+    q2 --ε--> q3
+    q3 --ε--> q9
+    q4 --b--> q5
+    q5 --ε--> q4
+    q5 --ε--> q7
+    q6 --ε--> q4
+    q6 --ε--> q7
+    q7 --ε--> q9
+    q8 --ε--> q2
+    q8 --ε--> q6
+    q9 --ε--> q20
+    q10 --a--> q11
+    q11 --ε--> q10
+    q11 --ε--> q13
+    q12 --ε--> q10
+    q12 --ε--> q13
+    q13 --ε--> q19
+    q14 --b--> q15
+    q15 --ε--> q14
+    q15 --ε--> q17
+    q16 --ε--> q14
+    q16 --ε--> q17
+    q17 --ε--> q19
+    q18 --ε--> q12
+    q18 --ε--> q16
+    q19 --ε--> q18
+    q19 --ε--> q21
+    q20 --ε--> q18
+    q20 --ε--> q21
+
+Dibujo del AFN guardado en: output/afn_a.png
+
+Simulacion de cadena(s) sobre el AFN:
+  Cadena: abab
+    ε-clousure(q8) = {q0, q2, q3, q4, q6, q7, q8, q9, q10, q12, q13, q14, q16, q17, q18, q19, q20, q21}
+    con 'a' -> {q0, q1, q3, q9, q10, q11, q12, q13, q14, q16, q17, q18, q19, q20, q21}
+    con 'b' -> {q10, q12, q13, q14, q15, q16, q17, q18, q19, q21}
+    con 'a' -> {q10, q11, q12, q13, q14, q16, q17, q18, q19, q21}
+    con 'b' -> {q10, q12, q13, q14, q15, q16, q17, q18, q19, q21}
+  --> ¿Se acepta la cadena? si
+
+  Cadena: aaabbb
+    ε-clousure(q8) = {q0, q2, q3, q4, q6, q7, q8, q9, q10, q12, q13, q14, q16, q17, q18, q19, q20, q21}
+    con 'a' -> {q0, q1, q3, q9, q10, q11, q12, q13, q14, q16, q17, q18, q19, q20, q21}
+    con 'a' -> {q0, q1, q3, q9, q10, q11, q12, q13, q14, q16, q17, q18, q19, q20, q21}
+    con 'a' -> {q0, q1, q3, q9, q10, q11, q12, q13, q14, q16, q17, q18, q19, q20, q21}
+    con 'b' -> {q10, q12, q13, q14, q15, q16, q17, q18, q19, q21}
+    con 'b' -> {q10, q12, q13, q14, q15, q16, q17, q18, q19, q21}
+    con 'b' -> {q10, q12, q13, q14, q15, q16, q17, q18, q19, q21}
+  --> ¿Se acepta la cadena? si
+
+  Cadena: abc
+    ε-clousure(q8) = {q0, q2, q3, q4, q6, q7, q8, q9, q10, q12, q13, q14, q16, q17, q18, q19, q20, q21}
+    con 'a' -> {q0, q1, q3, q9, q10, q11, q12, q13, q14, q16, q17, q18, q19, q20, q21}
+    con 'b' -> {q10, q12, q13, q14, q15, q16, q17, q18, q19, q21}
+    con 'c' -> {}
+  --> ¿Se acepta la cadena? no
+
+
+======================================================================
+b) Expresion regular: ((eps|a)|b*)*
+======================================================================
+Infix con concatenacion explicita: ((ε|a)|b*)*
+Postfix (Shunting Yard, Lab 2):     εa|b*|*
+
+AFN (Thompson) -- 14 estados:
+  Estados: 14  (q0..q13)
+  Estado inicial:    q12
+  Estado aceptacion: q13
+  Transiciones:
+    q0 --ε--> q1
+    q1 --ε--> q5
+    q2 --a--> q3
+    q3 --ε--> q5
+    q4 --ε--> q0
+    q4 --ε--> q2
+    q5 --ε--> q11
+    q6 --b--> q7
+    q7 --ε--> q6
+    q7 --ε--> q9
+    q8 --ε--> q6
+    q8 --ε--> q9
+    q9 --ε--> q11
+    q10 --ε--> q4
+    q10 --ε--> q8
+    q11 --ε--> q10
+    q11 --ε--> q13
+    q12 --ε--> q10
+    q12 --ε--> q13
+
+Dibujo del AFN guardado en: output/afn_b.png
+
+Simulacion de cadena(s) sobre el AFN:
+  Cadena: aabb
+    ε-clousure(q12) = {q0, q1, q2, q4, q5, q6, q8, q9, q10, q11, q12, q13}
+    con 'a' -> {q0, q1, q2, q3, q4, q5, q6, q8, q9, q10, q11, q13}
+    con 'a' -> {q0, q1, q2, q3, q4, q5, q6, q8, q9, q10, q11, q13}
+    con 'b' -> {q0, q1, q2, q4, q5, q6, q7, q8, q9, q10, q11, q13}
+    con 'b' -> {q0, q1, q2, q4, q5, q6, q7, q8, q9, q10, q11, q13}
+  --> ¿Se acepta la cadena? si
+
+  Cadena: ε (cadena vacia)
+    ε-clousure(q12) = {q0, q1, q2, q4, q5, q6, q8, q9, q10, q11, q12, q13}
+  --> ¿Se acepta la cadena? si
+
+  Cadena: abc
+    ε-clousure(q12) = {q0, q1, q2, q4, q5, q6, q8, q9, q10, q11, q12, q13}
+    con 'a' -> {q0, q1, q2, q3, q4, q5, q6, q8, q9, q10, q11, q13}
+    con 'b' -> {q0, q1, q2, q4, q5, q6, q7, q8, q9, q10, q11, q13}
+    con 'c' -> {}
+  --> ¿Se acepta la cadena? no
+
+
+======================================================================
+c) Expresion regular: (a|b)*abb(a|b)*
+======================================================================
+Infix con concatenacion explicita: (a|b)*.a.b.b.(a|b)*
+Postfix (Shunting Yard, Lab 2):     ab|*a.b.b.ab|*.
+
+AFN (Thompson) -- 22 estados:
+  Estados: 22  (q0..q21)
+  Estado inicial:    q6
+  Estado aceptacion: q21
+  Transiciones:
+    q0 --a--> q1
+    q1 --ε--> q5
+    q2 --b--> q3
+    q3 --ε--> q5
+    q4 --ε--> q0
+    q4 --ε--> q2
+    q5 --ε--> q4
+    q5 --ε--> q7
+    q6 --ε--> q4
+    q6 --ε--> q7
+    q7 --ε--> q8
+    q8 --a--> q9
+    q9 --ε--> q10
+    q10 --b--> q11
+    q11 --ε--> q12
+    q12 --b--> q13
+    q13 --ε--> q20
+    q14 --a--> q15
+    q15 --ε--> q19
+    q16 --b--> q17
+    q17 --ε--> q19
+    q18 --ε--> q14
+    q18 --ε--> q16
+    q19 --ε--> q18
+    q19 --ε--> q21
+    q20 --ε--> q18
+    q20 --ε--> q21
+
+Dibujo del AFN guardado en: output/afn_c.png
+
+Simulacion de cadena(s) sobre el AFN:
+  Cadena: aabb
+    ε-clousure(q6) = {q0, q2, q4, q6, q7, q8}
+    con 'a' -> {q0, q1, q2, q4, q5, q7, q8, q9, q10}
+    con 'a' -> {q0, q1, q2, q4, q5, q7, q8, q9, q10}
+    con 'b' -> {q0, q2, q3, q4, q5, q7, q8, q11, q12}
+    con 'b' -> {q0, q2, q3, q4, q5, q7, q8, q13, q14, q16, q18, q20, q21}
+  --> ¿Se acepta la cadena? si
+
+  Cadena: aaab
+    ε-clousure(q6) = {q0, q2, q4, q6, q7, q8}
+    con 'a' -> {q0, q1, q2, q4, q5, q7, q8, q9, q10}
+    con 'a' -> {q0, q1, q2, q4, q5, q7, q8, q9, q10}
+    con 'a' -> {q0, q1, q2, q4, q5, q7, q8, q9, q10}
+    con 'b' -> {q0, q2, q3, q4, q5, q7, q8, q11, q12}
+  --> ¿Se acepta la cadena? no
+
+  Cadena: bbb
+    ε-clousure(q6) = {q0, q2, q4, q6, q7, q8}
+    con 'b' -> {q0, q2, q3, q4, q5, q7, q8}
+    con 'b' -> {q0, q2, q3, q4, q5, q7, q8}
+    con 'b' -> {q0, q2, q3, q4, q5, q7, q8}
+  --> ¿Se acepta la cadena? no
+
+
+======================================================================
+d) Expresion regular: 0?(1?)?0*
+======================================================================
+Infix con concatenacion explicita: 0?.(1?)?.0*
+Postfix (Shunting Yard, Lab 2):     0?1??.0*.
+
+AFN (Thompson) -- 20 estados:
+  Estados: 20  (q0..q19)
+  Estado inicial:    q4
+  Estado aceptacion: q19
+  Transiciones:
+    q0 --0--> q1
+    q1 --ε--> q5
+    q2 --ε--> q3
+    q3 --ε--> q5
+    q4 --ε--> q0
+    q4 --ε--> q2
+    q5 --ε--> q14
+    q6 --1--> q7
+    q7 --ε--> q11
+    q8 --ε--> q9
+    q9 --ε--> q11
+    q10 --ε--> q6
+    q10 --ε--> q8
+    q11 --ε--> q15
+    q12 --ε--> q13
+    q13 --ε--> q15
+    q14 --ε--> q10
+    q14 --ε--> q12
+    q15 --ε--> q18
+    q16 --0--> q17
+    q17 --ε--> q16
+    q17 --ε--> q19
+    q18 --ε--> q16
+    q18 --ε--> q19
+
+Dibujo del AFN guardado en: output/afn_d.png
+
+Simulacion de cadena(s) sobre el AFN:
+  Cadena: 0100
+    ε-clousure(q4) = {q0, q2, q3, q4, q5, q6, q8, q9, q10, q11, q12, q13, q14, q15, q16, q18, q19}
+    con '0' -> {q1, q5, q6, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19}
+    con '1' -> {q7, q11, q15, q16, q18, q19}
+    con '0' -> {q16, q17, q19}
+    con '0' -> {q16, q17, q19}
+  --> ¿Se acepta la cadena? si
+
+  Cadena: 1
+    ε-clousure(q4) = {q0, q2, q3, q4, q5, q6, q8, q9, q10, q11, q12, q13, q14, q15, q16, q18, q19}
+    con '1' -> {q7, q11, q15, q16, q18, q19}
+  --> ¿Se acepta la cadena? si
+
+  Cadena: 00100
+    ε-clousure(q4) = {q0, q2, q3, q4, q5, q6, q8, q9, q10, q11, q12, q13, q14, q15, q16, q18, q19}
+    con '0' -> {q1, q5, q6, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19}
+    con '0' -> {q16, q17, q19}
+    con '1' -> {}
+  --> ¿Se acepta la cadena? no
+
+
+======================================================================
+Resumen (regex, cadena, ¿aceptada?):
+  a) '(a*|b*)+'                          cadena='abab'  -> si
+  a) '(a*|b*)+'                          cadena='aaabbb'  -> si
+  a) '(a*|b*)+'                          cadena='abc'  -> no
+  b) '((eps|a)|b*)*'                     cadena='aabb'  -> si
+  b) '((eps|a)|b*)*'                     cadena='ε'  -> si
+  b) '((eps|a)|b*)*'                     cadena='abc'  -> no
+  c) '(a|b)*abb(a|b)*'                   cadena='aabb'  -> si
+  c) '(a|b)*abb(a|b)*'                   cadena='aaab'  -> no
+  c) '(a|b)*abb(a|b)*'                   cadena='bbb'  -> no
+  d) '0?(1?)?0*'                         cadena='0100'  -> si
+  d) '0?(1?)?0*'                         cadena='1'  -> si
+  d) '0?(1?)?0*'                         cadena='00100'  -> no
