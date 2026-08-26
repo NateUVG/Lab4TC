@@ -1,5 +1,5 @@
 # Laboratorio #4 - Teoria de la Computacion   
-
+Link del video explicativo en Youtube: https://youtu.be/9AhDi45CJV8
 Usos del programa:
 
 1. Convierte la expresion regular a **postfix** (Shunting Yard, reutilizado del `Ejercicio 4` del Lab 2 -> `regex_shunting_yard.py`).
